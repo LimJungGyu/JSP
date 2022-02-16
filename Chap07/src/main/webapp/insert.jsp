@@ -1,0 +1,45 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import = "java.sql.*"%>
+<% request.setCharacterEncoding("UTF-8");%>
+<%
+String id = request.getParameter("id");
+String password = request.getParameter("password");
+String name = request.getParameter("name");
+String email = request.getParameter("email");
+String sql=null;
+Connection conn = null;
+Statement st =null;
+ResultSet rs= null;
+int cnt=0;
+//jdbc-odbc dirver등록
+try{
+		Class.forName("oracle.jdbc.driver.OracleDriver");	
+	}catch(ClassNotFoundException e){
+		out.println(e);
+		}
+//db와의 연결
+		try{
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","1234");
+			st=conn.createStatement();
+			rs= st.executeQuery("select * from woori where id = '" + id+"'");
+			if(!(rs.next())){
+				sql="insert into woori(id,password,name,email)";
+				sql= sql + "values('"+id+"','"+password+"',";
+				sql= sql + "'"+ name+"','"+email+"')";
+				
+				cnt = st.executeUpdate(sql);
+				if(cnt>0)
+					out.println("데이터가 성공적으로 입력되었습니다.");
+				else
+					out.println("데이터가 입력되지 않았습니다.");
+			}else
+				out.println("id가 이미 등록되어 있습니다");
+			st.close();
+			conn.close();
+			rs.close();
+		}catch(SQLException c){
+			out.print(c.getMessage());
+		}
+%>    
+<a href="main.html">main으로</a>
+&nbsp;<a href="insert.html">회원 등록 페이지로</a>

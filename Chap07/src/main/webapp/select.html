@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>특정회원 조회</title>
+<script>
+	function check(){
+		var blank = 0;
+		if(form1.id.value ==""){
+			blank =1;
+		}
+		if(form1.password.value ==""){
+			blank =1;
+		}
+		if(blank == 1){
+			alert("데이터를 입력하세요");
+			return(false)
+		}else {
+			return(true)
+		}
+	}
+
+</script>
+</head>
+<body>
+회원의 사용자 ID와 암호를 입력하세요
+<form method="post" name= "form1" action="select.jsp" onSubmit = "return check();">
+&nbsp;&nbsp;I&nbsp;&nbsp;D<input type="text" name="id"><br>
+암호<input type="text" name="password"><br>
+<input type="submit" value = "조회">
+</form>
+</body>
+</html>

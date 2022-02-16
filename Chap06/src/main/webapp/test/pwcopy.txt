@@ -1,0 +1,42 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"<br>
+    pageEncoding="UTF-8" import = "java.io.*"%><br>
+ <%<br>
+    String infile = "C:\\JSPstudy\\Chap06\\src\\main\\webapp\\printwriter.jsp";<br>
+    String outfile = "C:\\JSPstudy\\Chap06\\src\\main\\webapp\\test\\pwcopy.txt";<br>
+	String strline = null;<br>
+	FileReader filer = new FileReader(new File(infile));<br>
+	FileWriter filew = new FileWriter(new File(outfile));<br>
+	BufferedReader bufr = new BufferedReader(filer);<br>
+	//BufferedWriter 	bufw = new BufferedWriter(filew);<br>
+	PrintWriter pw = new PrintWriter(filew);<br>
+    try{<br>
+    	while((strline = bufr.readLine()) != null){<br>
+    		pw.println(strline+"<br>");<br>
+    		}<br>
+    	pw.close();<br>
+    }catch(IOException e){<br>
+    	out.println(e.getMessage());<br>
+    }<br>
+    bufr = new BufferedReader(new FileReader(outfile));<br>
+    try{<br>
+    	while((strline = bufr.readLine()) !=null);{<br>
+    		out.println(strline);<br>
+    		}<br>
+    	bufr.close();<br>
+    }catch(IOException e){<br>
+    	out.println(e.getMessage());<br>
+    }<br>
+    <br>
+    <br>
+    <br>
+%><br>
+<!DOCTYPE html><br>
+<html><br>
+<head><br>
+<meta charset="UTF-8"><br>
+<title>Insert title here</title><br>
+</head><br>
+<body><br>
+<br>
+</body><br>
+</html><br>

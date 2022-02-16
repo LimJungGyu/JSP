@@ -1,0 +1,39 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"<br>
+    pageEncoding="UTF-8"%><br>
+<%@page import = "java.io.*" %><br>
+<%<br>
+	String infile = "C:\\JSPstudy\\Chap06\\src\\main\\webapp\\burfrw.jsp";<br>
+	String outfile = "C:\\JSPstudy\\Chap06\\src\\main\\webapp\\test\\burfrwcopy.txt";<br>
+	String strline = null;<br>
+	FileReader filer = new FileReader(new File(infile));<br>
+	FileWriter filew = new FileWriter(new File(outfile));<br>
+	BufferedReader bufr = new BufferedReader(filer);<br>
+	BufferedWriter 	bufw = new BufferedWriter(filew);<br>
+	try{<br>
+		while((strline = bufr.readLine())!=null){<br>
+			strline = strline+"<br>";<br>
+			bufw.write(strline,0,strline.length());<br>
+			bufw.newLine();<br>
+		}<br>
+		bufw.close();<br>
+	}catch(IOException e){out.println(e.getMessage());}<br>
+	bufr = new BufferedReader(new FileReader(outfile));<br>
+	try{<br>
+		while((strline = bufr.readLine()) != null){<br>
+			out.println(strline);<br>
+		}<br>
+		bufr.close();		<br>
+	}catch(IOException e){<br>
+		out.println(e.getMessage());<br>
+	}<br>
+%><br>
+<!DOCTYPE html><br>
+<html><br>
+<head><br>
+<meta charset="UTF-8"><br>
+<title>Insert title here</title><br>
+</head><br>
+<body><br>
+<br>
+</body><br>
+</html><br>
